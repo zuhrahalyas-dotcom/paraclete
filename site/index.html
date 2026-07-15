@@ -30,12 +30,8 @@
 
     <!-- ============ HERO ============ -->
     <section class="hero">
-      <div class="hero-media" aria-hidden="true">
-        <video id="hero-video" autoplay muted loop playsinline preload="metadata" poster="assets/hero-poster.jpg">
-          <source src="assets/hero.mp4" type="video/mp4" />
-        </video>
-        <div class="hero-scrim"></div>
-      </div>
+      <div id="scene" class="hero-canvas" aria-hidden="true"></div>
+      <div class="hero-scrim" aria-hidden="true"></div>
 
       <div class="hero-copy">
         <p class="kicker mono">Commercial cleaning · Hamilton + GTA + Niagara</p>
@@ -45,14 +41,15 @@
         </h1>
         <p class="hero-sub">
           Hi, we're Paraclete — the crew you keep. Family-run since 2016, cleaning
-          offices, restaurants, and rentals while your city sleeps. This is what
-          your office looks like when we leave at 4 a.m.
+          offices, restaurants, and rentals while your city sleeps. We say exactly
+          what we'll do, and when we'll be there.
         </p>
         <div class="hero-cta">
           <a class="btn btn-solid" href="#quote">Get a quote in 24h</a>
           <a class="btn btn-hero-ghost" href="#process">See how we work</a>
         </div>
         <p class="hero-ticks mono">Quote in 24h · Walkthrough in 3 days · Rates locked 12 months</p>
+        <p class="hero-hint mono" aria-hidden="true"><span class="hint-dot"></span>drag the van to spin it</p>
       </div>
     </section>
 
@@ -203,6 +200,14 @@
     <p class="mono footer-meta">© 2026 Paraclete · Commercial Cleaning · Hamilton + GTA + Niagara</p>
   </footer>
 
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.165.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.165.0/examples/jsm/"
+      }
+    }
+  </script>
   <script type="module" src="main.js"></script>
 </body>
 </html>

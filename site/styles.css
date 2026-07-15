@@ -25,7 +25,9 @@ body {
   font-size: 17px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+  /* clip (not hidden) prevents horizontal scroll WITHOUT turning <body> into a
+     scroll container — keeps the window as the scroller for scrollTo + header */
+  overflow-x: clip;
 }
 
 h1, h2, h3 {
@@ -134,36 +136,56 @@ a { color: inherit; }
 .hero {
   position: relative;
   display: flex;
-  align-items: flex-end;
-  padding: clamp(120px, 18vh, 200px) var(--pad) clamp(56px, 9vh, 96px);
+  align-items: center;
+  padding: clamp(110px, 16vh, 180px) var(--pad) clamp(56px, 9vh, 88px);
   min-height: 100svh;
   overflow: hidden;
+  /* deep-teal stage with a soft lagoon glow spotlighting the van (right) */
+  background:
+    radial-gradient(58% 68% at 72% 46%, rgba(20, 184, 166, 0.20), transparent 72%),
+    linear-gradient(180deg, #0d443f 0%, var(--deep) 55%, #082e2b 100%);
 }
 
-.hero-media {
+/* full-bleed 3D stage */
+.hero-canvas {
   position: absolute;
   inset: 0;
-  background: var(--deep); /* paints instantly while the poster loads */
+  z-index: 0;
+  cursor: grab;
+  touch-action: pan-y;
 }
-.hero-media video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
+.hero-canvas:active { cursor: grabbing; }
+.hero-canvas canvas { display: block; }
+.hero-canvas img.fallback {
+  position: absolute;
+  right: 8%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: min(42%, 460px);
 }
+
+/* readability guard: darken the copy side so text always reads over the van */
 .hero-scrim {
   position: absolute;
   inset: 0;
-  /* uniform ink scrim — the brand-approved way to put type on a photo */
-  background: color-mix(in srgb, var(--deep) 45%, transparent);
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, #082e2b 78%, transparent) 0%,
+    color-mix(in srgb, #082e2b 30%, transparent) 42%,
+    transparent 62%
+  );
 }
 
 .hero-copy {
   position: relative;
-  z-index: 1;
-  max-width: 780px;
+  z-index: 2;
+  max-width: 640px;
   color: var(--cream);
+  pointer-events: none; /* let drags fall through to the canvas... */
 }
+.hero-copy a { pointer-events: auto; } /* ...but keep buttons/links clickable */
 
 .kicker { color: var(--teal); margin-bottom: 20px; }
 
@@ -210,6 +232,23 @@ a { color: inherit; }
   animation: fade 0.8s ease 0.65s forwards;
 }
 @keyframes fade { to { opacity: 1; } }
+
+.hero-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 26px;
+  color: color-mix(in srgb, var(--cream) 45%, transparent);
+  opacity: 0;
+  animation: fade 0.8s ease 0.85s forwards;
+}
+.hint-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--teal);
+  animation: pulse 1.8s ease-in-out infinite;
+}
+@keyframes pulse { 50% { transform: scale(1.6); opacity: 0.5; } }
 
 /* ghost button that reads on the dark hero */
 .btn-hero-ghost {
@@ -409,13 +448,26 @@ a { color: inherit; }
 @media (max-width: 880px) {
   .site-nav a:not(.btn) { display: none; }
 
+  /* stack: van gets its own band up top, copy flows beneath it */
   .hero {
-    align-items: flex-end;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
     text-align: left;
-    padding-bottom: 48px;
+    padding-top: 84px;
+    padding-bottom: clamp(40px, 7vh, 64px);
   }
-  .hero-title { font-size: clamp(52px, 15vw, 76px); }
-  .hero-scrim { background: color-mix(in srgb, var(--deep) 55%, transparent); }
+  .hero-canvas {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    height: 32vh;
+    min-height: 232px;
+    margin-bottom: 10px;
+  }
+  .hero-scrim { display: none; } /* van has its own space now — no overlap to guard */
+  .hero-copy { max-width: none; }
+  .hero-title { font-size: clamp(52px, 14vw, 76px); }
 
   .quote-grid { grid-template-columns: 1fr; }
   .step { grid-template-columns: 1fr; gap: 10px; }
@@ -425,7 +477,8 @@ a { color: inherit; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .hero-title .line > span { animation-duration: 0.01s; }
-  .hero-sub, .hero-cta, .hero-ticks { animation-duration: 0.01s; }
+  .hero-sub, .hero-cta, .hero-ticks, .hero-hint { animation-duration: 0.01s; }
   .marquee-track { animation: none; }
   .reveal { opacity: 1; transform: none; transition: none; }
+  .hint-dot { animation: none; }
 }
