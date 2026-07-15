@@ -190,10 +190,21 @@ a { color: inherit; }
 .kicker { color: var(--teal); margin-bottom: 20px; }
 
 .hero-title {
+  margin: 0;
   font-size: clamp(56px, 8.5vw, 128px);
   color: var(--cream);
 }
 .hero-title em { font-style: normal; color: var(--teal); }
+/* hero shows the supplied wordmark artwork (never re-typed) */
+.hero-title img {
+  display: block;
+  width: clamp(240px, 38vw, 520px);
+  height: auto;
+  opacity: 0;
+  transform: translateY(24px);
+  animation: heroWordmark 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
+}
+@keyframes heroWordmark { to { opacity: 1; transform: none; } }
 .hero-title .line {
   display: block;
   overflow: hidden;
@@ -477,7 +488,7 @@ a { color: inherit; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .hero-title .line > span { animation-duration: 0.01s; }
-  .hero-sub, .hero-cta, .hero-ticks, .hero-hint { animation-duration: 0.01s; }
+  .hero-title img, .hero-cta, .hero-hint { animation-duration: 0.01s; }
   .marquee-track { animation: none; }
   .reveal { opacity: 1; transform: none; transition: none; }
   .hint-dot { animation: none; }
