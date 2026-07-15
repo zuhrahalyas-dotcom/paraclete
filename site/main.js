@@ -1,19 +1,25 @@
-import * as THREE from "three";
-import { RoundedBoxGeometry } from "three/addons/geometries/RoundedBoxGeometry.js";
-
 /* ================================================================
    Paraclete — hero + page interactions
+
+   three.js is imported dynamically inside initVan() so the inner pages
+   (services, contact) never load a 3D engine — they have no hero canvas.
    ================================================================ */
 
 const COLORS = { teal: 0x14b8a6, deep: 0x0b3d3a, cream: 0xfff6e3 };
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+// assigned from the dynamic import; used by initVan + makeShadowTexture
+let THREE, RoundedBoxGeometry;
+
 /* ================================================================
    Hero: a matte toy-clay Paraclete van you can spin.
    ================================================================ */
-function initVan() {
+async function initVan() {
   const container = document.getElementById("scene");
   if (!container) return;
+
+  THREE = await import("three");
+  ({ RoundedBoxGeometry } = await import("three/addons/geometries/RoundedBoxGeometry.js"));
 
   let renderer;
   try {
@@ -268,15 +274,41 @@ function showFallback(container) {
 
 /* ================================================================
    Header: transparent over the hero, solid cream once you scroll.
+   Inner pages have no dark hero, so the header stays solid throughout.
    ================================================================ */
 function initHeader() {
   const header = document.getElementById("site-header");
   if (!header) return;
+  if (!document.getElementById("scene")) {
+    header.classList.add("scrolled"); // solid from the top on inner pages
+    return;
+  }
   const update = () => {
     header.classList.toggle("scrolled", window.scrollY > window.innerHeight * 0.7);
   };
   window.addEventListener("scroll", update, { passive: true });
   update();
+}
+
+/* ================================================================
+   Mobile menu: hamburger toggles the nav panel.
+   ================================================================ */
+function initNav() {
+  const header = document.getElementById("site-header");
+  const toggle = header && header.querySelector(".nav-toggle");
+  if (!header || !toggle) return;
+  const close = () => {
+    header.classList.remove("nav-open");
+    toggle.setAttribute("aria-expanded", "false");
+  };
+  toggle.addEventListener("click", () => {
+    const open = header.classList.toggle("nav-open");
+    toggle.setAttribute("aria-expanded", open ? "true" : "false");
+  });
+  header.querySelectorAll(".site-nav a").forEach((a) => a.addEventListener("click", close));
+  document.addEventListener("click", (e) => {
+    if (header.classList.contains("nav-open") && !header.contains(e.target)) close();
+  });
 }
 
 /* ================================================================
@@ -321,7 +353,11 @@ function initForm() {
   });
 }
 
-initVan();
+initVan().catch(() => {
+  const c = document.getElementById("scene");
+  if (c) showFallback(c);
+});
 initHeader();
+initNav();
 initReveals();
 initForm();

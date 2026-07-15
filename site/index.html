@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Paraclete · Commercial Cleaning — Hamilton, GTA, Niagara</title>
-  <meta name="description" content="Paraclete — commercial cleaning called to your side. Offices, restaurants, and rental turns across Hamilton, the GTA, and Niagara. Quote in 24h. Walkthrough in 3 days." />
+  <title>Paraclete · Commercial Cleaning — Ontario & the DMV</title>
+  <meta name="description" content="Paraclete — commercial cleaning, called to your side. Offices, restaurants, and rental turns across Hamilton, the GTA, Niagara, and the DMV (DC, Maryland, Northern Virginia). Family-run since 2016." />
   <link rel="icon" href="assets/monogram-cream-on-teal.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -14,14 +14,18 @@
 <body>
 
   <header class="site-header" id="site-header">
-    <a class="brand" href="#top" aria-label="Paraclete — home">
+    <a class="brand" href="index.html" aria-label="Paraclete — home">
       <img class="logo-teal" src="assets/wordmark-teal-transparent.png" alt="Paraclete" />
       <img class="logo-cream" src="assets/wordmark-cream-transparent.png" alt="" aria-hidden="true" />
     </a>
-    <nav class="site-nav" aria-label="Primary">
-      <a href="#about">Who we are</a>
-      <a href="#services">Services</a>
-      <a href="#quote" class="btn btn-solid btn-small">Get a quote</a>
+    <button class="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="site-nav">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="site-nav" id="site-nav" aria-label="Primary">
+      <a href="index.html#about">Who we are</a>
+      <a href="services.html">Services</a>
+      <a href="contact.html">Contact</a>
+      <a href="contact.html" class="btn btn-solid btn-small">Get a quote</a>
     </nav>
   </header>
 
@@ -37,8 +41,8 @@
           <img src="assets/wordmark-cream-transparent.png" alt="Paraclete" />
         </h1>
         <div class="hero-cta">
-          <a class="btn btn-solid" href="#quote">Get a quote</a>
-          <a class="btn btn-hero-ghost" href="#about">See how we work</a>
+          <a class="btn btn-solid" href="contact.html">Get a quote</a>
+          <a class="btn btn-hero-ghost" href="services.html">See how we work</a>
         </div>
         <p class="hero-hint mono" aria-hidden="true"><span class="hint-dot"></span>drag the van to spin it</p>
       </div>
@@ -47,9 +51,9 @@
     <!-- ============ WHO WE ARE ============ -->
     <section class="section" id="about">
       <div class="section-head reveal">
-        <p class="eyebrow mono">01 · Who we are</p>
+        <p class="eyebrow mono">Who we are</p>
         <h2>Hi, we're&nbsp;Paraclete.</h2>
-        <p class="section-sub">Family-run since 2016, cleaning offices, restaurants, and rentals across Hamilton, the GTA, and Niagara while your city sleeps. No corporate filler, no "trusted partner" — just a crew that shows up when it said it would, and a bill that doesn't wander.</p>
+        <p class="section-sub">Family-run since 2016, cleaning offices, restaurants, and rentals across Hamilton, the GTA, Niagara, and the DMV — Washington DC, Maryland, and Northern Virginia — while your city sleeps. No corporate filler, no "trusted partner" — just a crew that shows up when it said it would, and a bill that doesn't wander.</p>
       </div>
       <div class="stats">
         <div class="stat reveal">
@@ -69,71 +73,9 @@
           <p class="stat-label">family-run ever since. Same crew, same standard</p>
         </div>
       </div>
-    </section>
-
-    <!-- ============ SERVICES ============ -->
-    <section class="section section-tint" id="services">
-      <div class="section-head reveal">
-        <p class="eyebrow mono">02 · What we clean</p>
-        <h2>Your space, our night&nbsp;shift.</h2>
-      </div>
-      <div class="cards">
-        <article class="card reveal">
-          <p class="card-num mono">/01</p>
-          <h3>Offices &amp; workspaces</h3>
-          <p>Nightly or weekly service — desks, floors, kitchens, washrooms. Your team walks into a reset room every morning.</p>
-        </article>
-        <article class="card reveal">
-          <p class="card-num mono">/02</p>
-          <h3>Restaurants &amp; hospitality</h3>
-          <p>Front-of-house detail and back-of-house degrease, done after close. Health-inspection ready, every day you open.</p>
-        </article>
-        <article class="card reveal">
-          <p class="card-num mono">/03</p>
-          <h3>Rental &amp; Airbnb turns</h3>
-          <p>Same-day turnovers with photo confirmation on completion. Linens, restock, and a checklist your guests can feel.</p>
-        </article>
-        <article class="card reveal">
-          <p class="card-num mono">/04</p>
-          <h3>Clinics &amp; retail</h3>
-          <p>Disinfection protocols for patient areas, floors that hold up to foot traffic, and glass without the streaks.</p>
-        </article>
-      </div>
-    </section>
-
-    <!-- ============ QUOTE ============ -->
-    <section class="section quote-band" id="quote">
-      <div class="quote-grid">
-        <div class="quote-copy reveal">
-          <p class="eyebrow mono"><span class="chip-booking">Now booking</span></p>
-          <h2>Called to<br />your side.</h2>
-          <p class="section-sub">Tell us about your space. A real person replies within 24 hours — with a number, not a sales call.</p>
-          <p class="mono quote-contact">
-            (905) 555-0142<br />
-            hello@paraclete.co<br />
-            118 King St E · Hamilton, ON
-          </p>
-        </div>
-        <form class="quote-form reveal" id="quote-form" novalidate>
-          <label>
-            <span class="mono">Name</span>
-            <input type="text" name="name" placeholder="Sarah Wilson" required />
-          </label>
-          <label>
-            <span class="mono">Business</span>
-            <input type="text" name="business" placeholder="King St Office" />
-          </label>
-          <label>
-            <span class="mono">Email</span>
-            <input type="email" name="email" placeholder="you@business.co" required />
-          </label>
-          <label>
-            <span class="mono">What needs cleaning?</span>
-            <textarea name="message" rows="4" placeholder="4,000 sq ft office, nightly Mon–Fri…"></textarea>
-          </label>
-          <button class="btn btn-marigold" type="submit">Send it — quote in 24h</button>
-          <p class="form-note mono" hidden>Got it. We'll reply within 24 hours.</p>
-        </form>
+      <div class="about-cta reveal">
+        <a class="btn btn-solid" href="services.html">See what we do</a>
+        <a class="btn btn-ghost" href="contact.html">Get a quote</a>
       </div>
     </section>
 
@@ -142,10 +84,14 @@
   <footer class="site-footer">
     <img class="footer-mark" src="assets/wordmark-cream-transparent.png" alt="Paraclete" />
     <p class="footer-tag">Called to your side.</p>
-    <p class="mono footer-meta">
-      118 King St E · Hamilton, ON &nbsp;·&nbsp; paraclete.co &nbsp;·&nbsp; (905) 555-0142 &nbsp;·&nbsp; hello@paraclete.co
-    </p>
-    <p class="mono footer-meta">© 2026 Paraclete · Commercial Cleaning · Hamilton + GTA + Niagara</p>
+    <nav class="footer-nav" aria-label="Footer">
+      <a href="index.html#about">Who we are</a>
+      <a href="services.html">Services</a>
+      <a href="services.html#areas">Service areas</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <p class="mono footer-meta">Ontario — Hamilton · GTA · Niagara &nbsp;·&nbsp; The DMV — DC · Maryland · N. Virginia</p>
+    <p class="mono footer-meta">© 2026 Paraclete · Commercial Cleaning</p>
   </footer>
 
   <script type="importmap">

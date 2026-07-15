@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact · Paraclete Commercial Cleaning</title>
+  <meta name="description" content="Get a quote from Paraclete. Tell us about your space and a real person replies within 24 hours — serving Ontario and the DMV." />
+  <link rel="icon" href="assets/monogram-cream-on-teal.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="inner">
+
+  <header class="site-header" id="site-header">
+    <a class="brand" href="index.html" aria-label="Paraclete — home">
+      <img class="logo-teal" src="assets/wordmark-teal-transparent.png" alt="Paraclete" />
+      <img class="logo-cream" src="assets/wordmark-cream-transparent.png" alt="" aria-hidden="true" />
+    </a>
+    <button class="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="site-nav">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="site-nav" id="site-nav" aria-label="Primary">
+      <a href="index.html#about">Who we are</a>
+      <a href="services.html">Services</a>
+      <a href="contact.html" aria-current="page">Contact</a>
+      <a href="contact.html" class="btn btn-solid btn-small">Get a quote</a>
+    </nav>
+  </header>
+
+  <main class="page">
+
+    <section class="section contact-section">
+      <div class="quote-grid">
+        <div class="quote-copy">
+          <p class="eyebrow mono"><span class="chip-booking">Now booking</span></p>
+          <h1>Called to<br />your side.</h1>
+          <p class="section-sub">Tell us about your space. A real person replies within 24 hours — with a number, not a sales call.</p>
+          <p class="mono quote-contact">
+            (905) 555-0142<br />
+            hello@paraclete.co<br />
+            118 King St E · Hamilton, ON
+          </p>
+          <p class="mono quote-areas">Serving Ontario (Hamilton · GTA · Niagara) &amp; the DMV (DC · Maryland · N. Virginia)</p>
+        </div>
+        <form class="quote-form" id="quote-form" novalidate>
+          <label>
+            <span class="mono">Name</span>
+            <input type="text" name="name" placeholder="Sarah Wilson" required />
+          </label>
+          <label>
+            <span class="mono">Business</span>
+            <input type="text" name="business" placeholder="King St Office" />
+          </label>
+          <label>
+            <span class="mono">Email</span>
+            <input type="email" name="email" placeholder="you@business.co" required />
+          </label>
+          <label>
+            <span class="mono">Where are you?</span>
+            <input type="text" name="location" placeholder="Hamilton, ON · or · Arlington, VA" />
+          </label>
+          <label>
+            <span class="mono">What needs cleaning?</span>
+            <textarea name="message" rows="4" placeholder="4,000 sq ft office, nightly Mon–Fri…"></textarea>
+          </label>
+          <button class="btn btn-marigold" type="submit">Send it — quote in 24h</button>
+          <p class="form-note mono" hidden>Got it. We'll reply within 24 hours.</p>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <img class="footer-mark" src="assets/wordmark-cream-transparent.png" alt="Paraclete" />
+    <p class="footer-tag">Called to your side.</p>
+    <nav class="footer-nav" aria-label="Footer">
+      <a href="index.html#about">Who we are</a>
+      <a href="services.html">Services</a>
+      <a href="services.html#areas">Service areas</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <p class="mono footer-meta">Ontario — Hamilton · GTA · Niagara &nbsp;·&nbsp; The DMV — DC · Maryland · N. Virginia</p>
+    <p class="mono footer-meta">© 2026 Paraclete · Commercial Cleaning</p>
+  </footer>
+
+  <script type="module" src="main.js"></script>
+</body>
+</html>

@@ -98,18 +98,23 @@ a { color: inherit; }
 .brand .logo-teal { position: absolute; inset: 0; opacity: 0; transition: opacity 0.3s ease; }
 .brand .logo-cream { transition: opacity 0.3s ease; }
 
-/* over the hero video: cream logo, cream links */
+/* over the hero: cream logo, cream links, cream hamburger */
+.site-header:not(.scrolled) { color: var(--cream); }
 .site-header:not(.scrolled) .site-nav a:not(.btn) { color: var(--cream); }
 .site-header:not(.scrolled) .site-nav a:not(.btn)::after { background: var(--cream); }
 
-/* after scrolling past the hero: solid cream bar, teal logo */
+/* after scrolling past the hero (and on every inner page): solid cream bar, teal logo */
 .site-header.scrolled {
   background: color-mix(in srgb, var(--cream) 90%, transparent);
   backdrop-filter: blur(10px);
   border-bottom-color: color-mix(in srgb, var(--deep) 10%, transparent);
+  color: var(--deep);
 }
 .site-header.scrolled .logo-teal { opacity: 1; }
 .site-header.scrolled .logo-cream { opacity: 0; }
+
+/* hamburger — hidden on desktop, follows header colour via currentColor */
+.nav-toggle { display: none; }
 .site-nav {
   display: flex;
   align-items: center;
@@ -387,6 +392,132 @@ a { color: inherit; }
   color: color-mix(in srgb, var(--cream) 55%, transparent);
   margin-top: 10px;
 }
+.footer-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px clamp(18px, 3vw, 28px);
+  margin: 6px 0 30px;
+}
+.footer-nav a {
+  text-decoration: none;
+  font-size: 15px;
+  color: color-mix(in srgb, var(--cream) 80%, transparent);
+  transition: color 0.2s ease;
+}
+.footer-nav a:hover { color: var(--teal); }
+
+/* ============ Inner pages ============ */
+/* CSS fallback so the header is solid even before JS runs */
+body.inner .site-header {
+  background: color-mix(in srgb, var(--cream) 90%, transparent);
+  backdrop-filter: blur(10px);
+  border-bottom-color: color-mix(in srgb, var(--deep) 10%, transparent);
+  color: var(--deep);
+}
+body.inner .brand .logo-teal { opacity: 1; }
+body.inner .brand .logo-cream { opacity: 0; }
+body.inner .site-nav a:not(.btn) { color: var(--deep); }
+
+.page-hero {
+  padding: calc(62px + clamp(44px, 8vh, 92px)) var(--pad) clamp(28px, 4vh, 48px);
+  max-width: 1100px;
+}
+.page-hero .eyebrow { color: var(--teal); margin-bottom: 14px; }
+.page-hero h1 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(48px, 7vw, 104px);
+  line-height: 1.02;
+  color: var(--deep);
+}
+.page-lead {
+  margin-top: 22px;
+  max-width: 62ch;
+  font-size: clamp(17px, 1.5vw, 20px);
+  color: color-mix(in srgb, var(--deep) 78%, transparent);
+}
+
+/* home "who we are" call-to-action row */
+.about-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: clamp(38px, 5vh, 60px);
+}
+
+/* Services — options list (clean hairline rows, no boxes) */
+.options {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  column-gap: clamp(28px, 5vw, 72px);
+}
+.options li {
+  display: flex;
+  gap: 12px;
+  align-items: baseline;
+  padding: 18px 0;
+  border-top: 2px solid color-mix(in srgb, var(--deep) 16%, transparent);
+  font-size: 17px;
+}
+.opt-mark { color: var(--teal); font-size: 14px; }
+
+/* Services — service areas */
+.areas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: clamp(32px, 5vw, 72px);
+}
+.area-region {
+  color: var(--teal);
+  padding-bottom: 16px;
+  border-bottom: 2px solid color-mix(in srgb, var(--deep) 16%, transparent);
+}
+.area-list { list-style: none; margin-top: 8px; }
+.area-list li {
+  font-family: var(--font-display);
+  font-size: clamp(24px, 3vw, 34px);
+  color: var(--deep);
+  padding: 10px 0;
+}
+
+/* generic dark call-to-action band */
+.cta {
+  background: var(--deep);
+  color: var(--cream);
+  text-align: center;
+  padding: clamp(72px, 12vh, 130px) var(--pad);
+}
+.cta h2 { font-family: var(--font-display); font-weight: 400; font-size: clamp(36px, 5vw, 64px); }
+.cta p {
+  margin: 18px auto 30px;
+  max-width: 46ch;
+  font-size: 18px;
+  color: color-mix(in srgb, var(--cream) 78%, transparent);
+}
+
+/* Contact page — dark form band under the solid header */
+.contact-section {
+  background: var(--deep);
+  color: var(--cream);
+  padding-top: calc(62px + clamp(44px, 7vh, 84px));
+  padding-bottom: clamp(64px, 10vh, 110px);
+  min-height: 82vh;
+}
+.contact-section .eyebrow { color: var(--teal); }
+.contact-section h1 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(44px, 5.5vw, 80px);
+  line-height: 1.04;
+}
+.quote-areas {
+  margin-top: 20px;
+  max-width: 42ch;
+  line-height: 1.9;
+  color: color-mix(in srgb, var(--cream) 55%, transparent);
+}
 
 /* ============ Reveal on scroll ============ */
 .reveal {
@@ -398,7 +529,65 @@ a { color: inherit; }
 
 /* ============ Mobile ============ */
 @media (max-width: 880px) {
-  .site-nav a:not(.btn) { display: none; }
+  /* ---- mobile menu ---- */
+  .nav-toggle {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 44px;
+    height: 44px;
+    padding: 11px;
+    background: none;
+    border: 0;
+    color: inherit;
+    cursor: pointer;
+  }
+  .nav-toggle span {
+    height: 2px;
+    width: 100%;
+    background: currentColor;
+    border-radius: 2px;
+    transition: transform 0.25s ease, opacity 0.2s ease;
+  }
+  .site-header.nav-open .nav-toggle span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .site-header.nav-open .nav-toggle span:nth-child(2) { opacity: 0; }
+  .site-header.nav-open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* open menu forces the solid look so the panel reads */
+  .site-header.nav-open {
+    background: var(--cream);
+    border-bottom-color: color-mix(in srgb, var(--deep) 10%, transparent);
+    color: var(--deep);
+  }
+  .site-header.nav-open .logo-teal { opacity: 1; }
+  .site-header.nav-open .logo-cream { opacity: 0; }
+
+  .site-nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 6px var(--pad) 20px;
+    background: var(--cream);
+    border-bottom: 1px solid color-mix(in srgb, var(--deep) 10%, transparent);
+    box-shadow: 0 16px 30px -18px rgba(11, 61, 58, 0.4);
+    display: none;
+  }
+  .site-header.nav-open .site-nav { display: flex; }
+  .site-nav a:not(.btn) {
+    display: block;
+    font-size: 18px;
+    padding: 15px 2px;
+    border-bottom: 1px solid color-mix(in srgb, var(--deep) 8%, transparent);
+  }
+  /* dark links in the open panel — must beat the over-hero cream-link rule */
+  .site-header.nav-open .site-nav a:not(.btn) { color: var(--deep); }
+  .site-nav a:not(.btn)::after { display: none; }
+  .site-nav .btn { margin-top: 14px; text-align: center; }
 
   /* stack: van gets its own band up top, copy flows beneath it */
   .hero {
@@ -422,7 +611,7 @@ a { color: inherit; }
   .hero-title { font-size: clamp(52px, 14vw, 76px); }
 
   .quote-grid { grid-template-columns: 1fr; }
-  .step { grid-template-columns: 1fr; gap: 10px; }
+  .page-hero h1 { font-size: clamp(42px, 12vw, 68px); }
 }
 
 /* ============ Reduced motion ============ */
