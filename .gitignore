@@ -1,0 +1,10 @@
+# OS
+.DS_Store
+
+# Local tooling
+.claude/
+.vercel/
+node_modules/
+
+# Redundant: the branding source is already extracted into Paraclete/
+Paraclete.zip
